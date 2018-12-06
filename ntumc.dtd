@@ -45,6 +45,7 @@
 <!ATTLIST Concept
           cid ID #REQUIRED
           wid IDREFS #REQUIRED
+          clemma CDATA #REQUIRED
           synset_tag CDATA #IMPLIED
           comment CDATA #IMPLIED
           last_changed_by CDATA #IMPLIED
