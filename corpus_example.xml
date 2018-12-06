@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Corpus SYSTEM "ntumc.dtd">
+<!-- A valid XML contains one Corpus element (the root) -->
+<!-- It contains at least one document. If it's a multilingual corpus,
+     it cointains all documents with progressive ids. When importing
+     into NTUMC, the language is inferred at the Document level.
+     The attribute "language" in Corpus helps the parser detect
+     whether the language of the documents is going to change.    -->
+<Corpus corpusID="cp1"
+        title="Example of multilingual corpus"
+        language="multilingual">
+  <Document docID="d1"
+            doc="text"
+            language="eng"
+            title="A title"
+            subtitle=""
+            url="">
+    <Sentence sid="s1"
+              sent="The beautiful woman">
+      <Word  wid="w1"
+             pos="DET"
+             lemma="the"
+             surface_form="The"
+             cfrom="0"
+             cto="2"/>
+      <Word  wid="w2"
+             pos="ADJ"
+             lemma="beautiful"
+             surface_form="beautiful"
+             cfrom="4"
+             cto="12"/>
+      <Word  wid="w3"
+             pos="NOUN"
+             lemma="woman"
+             surface_form="woman"
+             cfrom="14"
+             cto="18"/>
+      <Concept cid="c1" wid="w3" synset_tag="10787470-n">
+	<Tag category="sentiment" value="0.8"/>
+      </Concept>
+      <Chunk chid="ch1" wid="w2 w3">
+	<Tag category="sentiment" value="0.8"/>
+      </Chunk>
+    </Sentence>
+  </Document>
+  <Document docID="d2"
+            doc="text"
+            language="ita"
+            title="Un titolo"
+            subtitle=""
+            url="">
+    <Sentence sid="s2"
+              sent="La donna">
+      <Word  wid="w4"
+             pos="DET"
+             lemma="il"
+             surface_form="La"
+             cfrom="0"
+             cto="1"/>
+      <Word  wid="w5"
+             pos="NOUN"
+             lemma="donna"
+             surface_form="donna"
+             cfrom="2"
+             cto="6"/>
+      <Concept cid="c2" wid="w5" synset_tag="10787470-n"/>
+    </Sentence>
+  </Document>
+  <Document docID="d3"
+            doc="text"
+            language="spa"
+            title="Un título">
+    <Sentence sid="s3"
+              sent="La mulier">
+      <Word  wid="w6"
+             pos="DET"
+             lemma="el"
+             surface_form="La"
+             cfrom="0"
+             cto="1"/>
+      <Word  wid="w7"
+             pos="NOUN"
+             lemma="mulier"
+             surface_form="mulier"
+             cfrom="2"
+             cto="7"/>
+      <Concept cid="c3" wid="w7" synset_tag="10787470-n"/>
+    </Sentence>
+  </Document>
+  <Alignment>
+    <DocAlignment docID="d1 d2 d3"/>
+    <SentAlignment sid_from="s1" sid_to="s2"/>
+    <SentAlignment sid_from="s1" sid_to="s3"/>
+    <SentAlignment sid_from="s2" sid_to="s1"/>
+    <SentAlignment sid_from="s2" sid_to="s3"/>
+    <SentAlignment sid_from="s3" sid_to="s1"/>
+    <SentAlignment sid_from="s3" sid_to="s2"/>
+    <WordAlignment wid_from="w3"  wid_to="w5"/>
+    <WordAlignment wid_from="w3"  wid_to="w7"/>
+    <ConceptAlignment cid_from="c1" cid_to="c2"/>
+    <ConceptAlignment cid_from="c1" cid_to="c3"/>
+  </Alignment>
+</Corpus>

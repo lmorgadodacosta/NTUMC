@@ -1,0 +1,74 @@
+<!ELEMENT Corpus (Document+, Alignment?)>
+<!ATTLIST Corpus
+          corpusID ID #REQUIRED
+          title CDATA #REQUIRED
+          language (multilingual | monolingual) #REQUIRED>
+<!ELEMENT Document (Sentence+)>
+<!ATTLIST Document
+          docID ID #REQUIRED
+          doc CDATA #REQUIRED
+          language CDATA #REQUIRED
+          title CDATA #REQUIRED
+          subtitle CDATA #IMPLIED
+          url CDATA #IMPLIED>
+<!ELEMENT Alignment (DocAlignment*, SentAlignment*, WordAlignment*, ConceptAlignment*)>
+<!ELEMENT DocAlignment EMPTY>
+<!ATTLIST DocAlignment
+          docID IDREFS #REQUIRED>
+<!ELEMENT SentAlignment EMPTY>
+<!ATTLIST SentAlignment
+          sid_from IDREF #REQUIRED
+          sid_to IDREFS #REQUIRED>
+<!ELEMENT WordAlignment EMPTY>
+<!ATTLIST WordAlignment
+          wid_from IDREF #REQUIRED
+          wid_to IDREFS #REQUIRED>
+<!ELEMENT ConceptAlignment EMPTY>
+<!ATTLIST ConceptAlignment
+          cid_from IDREF #REQUIRED
+          cid_to IDREFS #REQUIRED>
+<!ELEMENT Tag EMPTY>
+<!ATTLIST Tag
+	  category CDATA #REQUIRED
+	  value CDATA #REQUIRED
+	  comment CDATA #IMPLIED
+	  last_changed_by CDATA #IMPLIED
+          last_changed CDATA #IMPLIED>
+<!ELEMENT Sentence (Word+, Concept*, Chunk*, Tag*)>
+<!ATTLIST Sentence
+          sid ID #REQUIRED
+          sent CDATA #REQUIRED
+          pid CDATA #IMPLIED
+          comment CDATA #IMPLIED
+          last_changed_by CDATA #IMPLIED
+          last_changed CDATA #IMPLIED>
+<!ELEMENT Word (Tag*)>
+<!-- Allowed values for UPOS: http://universaldependencies.org/u/pos/ Universal Pos Tag -->
+<!ATTLIST Word
+          wid ID #REQUIRED
+          lemma CDATA #IMPLIED
+          surface_form CDATA #REQUIRED
+          upos (ADJ|ADP|ADV|AUX|CCONJ|DET|INTJ|NOUN|NUM|PART|PRON|
+	  PROPN|PUNCT|SCONJ|SYM|VERB|X) #IMPLIED
+          pos CDATA #IMPLIED
+          cfrom CDATA #IMPLIED
+          cto CDATA #IMPLIED
+          comment CDATA #IMPLIED
+          last_changed_by CDATA #IMPLIED
+          last_changed CDATA #IMPLIED>
+<!ELEMENT Concept (Tag*)>
+<!ATTLIST Concept
+          cid ID #REQUIRED
+          wid IDREFS #REQUIRED
+          synset_tag CDATA #REQUIRED
+          tags CDATA #IMPLIED
+          comment CDATA #IMPLIED
+          last_changed_by CDATA #IMPLIED
+          last_changed CDATA #IMPLIED>
+<!ELEMENT Chunk (Tag*)>
+<!ATTLIST Chunk
+          chid ID #REQUIRED
+          wid IDREFS #REQUIRED
+          comment CDATA #IMPLIED
+          last_changed_by CDATA #IMPLIED
+          last_changed CDATA #IMPLIED>
