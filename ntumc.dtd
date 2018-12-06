@@ -10,7 +10,7 @@
           language CDATA #REQUIRED
           title CDATA #REQUIRED
           subtitle CDATA #IMPLIED
-          url CDATA #IMPLIED>
+          url CDATA #IMPLIED
           collection CDATA #IMPLIED>
 <!ELEMENT Alignment (DocAlignment*, SentAlignment*, WordAlignment*, ConceptAlignment*)>
 <!ELEMENT DocAlignment EMPTY>
