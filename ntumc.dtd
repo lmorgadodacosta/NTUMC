@@ -46,7 +46,6 @@
           cid ID #REQUIRED
           wid IDREFS #REQUIRED
           synset_tag CDATA #REQUIRED
-          tags CDATA #IMPLIED
           comment CDATA #IMPLIED
           last_changed_by CDATA #IMPLIED
           last_changed CDATA #IMPLIED>
