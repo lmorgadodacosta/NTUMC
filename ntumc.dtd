@@ -35,7 +35,7 @@
 	  comment CDATA #IMPLIED
 	  last_changed_by CDATA #IMPLIED
           last_changed CDATA #IMPLIED>
-<!ELEMENT Sentence (Word+, Concept*, Chunk*, Tag*)>
+<!ELEMENT Sentence (Word*, Concept*, Chunk*, Tag*)>
 <!ATTLIST Sentence
           sid ID #REQUIRED
           sent CDATA #REQUIRED
