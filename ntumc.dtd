@@ -12,22 +12,6 @@
           subtitle CDATA #IMPLIED
           url CDATA #IMPLIED
           collection CDATA #IMPLIED>
-<!ELEMENT Alignment (DocAlignment*, SentAlignment*, WordAlignment*, ConceptAlignment*)>
-<!ELEMENT DocAlignment EMPTY>
-<!ATTLIST DocAlignment
-          docID IDREFS #REQUIRED>
-<!ELEMENT SentAlignment EMPTY>
-<!ATTLIST SentAlignment
-          sid_from IDREF #REQUIRED
-          sid_to IDREFS #REQUIRED>
-<!ELEMENT WordAlignment EMPTY>
-<!ATTLIST WordAlignment
-          wid_from IDREF #REQUIRED
-          wid_to IDREFS #REQUIRED>
-<!ELEMENT ConceptAlignment EMPTY>
-<!ATTLIST ConceptAlignment
-          cid_from IDREF #REQUIRED
-          cid_to IDREFS #REQUIRED>
 <!ELEMENT Tag EMPTY>
 <!ATTLIST Tag
 	  category CDATA #REQUIRED
@@ -73,3 +57,19 @@
           comment CDATA #IMPLIED
           last_changed_by CDATA #IMPLIED
           last_changed CDATA #IMPLIED>
+<!ELEMENT Alignment (DocAlignment*, SentAlignment*, WordAlignment*, ConceptAlignment*)>
+<!ELEMENT DocAlignment EMPTY>
+<!ATTLIST DocAlignment
+          docID IDREFS #REQUIRED>
+<!ELEMENT SentAlignment EMPTY>
+<!ATTLIST SentAlignment
+          sid_from IDREF #REQUIRED
+          sid_to IDREFS #REQUIRED>
+<!ELEMENT WordAlignment EMPTY>
+<!ATTLIST WordAlignment
+          wid_from IDREF #REQUIRED
+          wid_to IDREFS #REQUIRED>
+<!ELEMENT ConceptAlignment EMPTY>
+<!ATTLIST ConceptAlignment
+          cid_from IDREF #REQUIRED
+          cid_to IDREFS #REQUIRED>
