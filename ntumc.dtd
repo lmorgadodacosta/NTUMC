@@ -61,19 +61,19 @@
 <!ELEMENT DocAlignment EMPTY>
 <!ATTLIST DocAlignment
           docID IDREFS #REQUIRED
-		  type (manual|automatic) #REQUIRED>
+	  type (manual|automatic) #REQUIRED>
 <!ELEMENT SentAlignment EMPTY>
 <!ATTLIST SentAlignment
           sid_from IDREF #REQUIRED
           sid_to IDREFS #REQUIRED
-		  type (manual|automatic) #REQUIRED>
+	  type (manual|automatic) #REQUIRED>
 <!ELEMENT WordAlignment EMPTY>s
 <!ATTLIST WordAlignment
           wid_from IDREF #REQUIRED
           wid_to IDREFS #REQUIRED
-		  type (manual|automatic) #REQUIRED>
+	  type (manual|automatic) #REQUIRED>
 <!ELEMENT ConceptAlignment EMPTY>
 <!ATTLIST ConceptAlignment
           cid_from IDREF #REQUIRED
           cid_to IDREFS #REQUIRED
-		  type (manual|automatic) #REQUIRED>
+	  type (manual|automatic) #REQUIRED>
