@@ -18,7 +18,8 @@
 	  value CDATA #REQUIRED
 	  comment CDATA #IMPLIED
 	  last_changed_by CDATA #IMPLIED
-          last_changed CDATA #IMPLIED>
+          last_changed CDATA #IMPLIED
+          confidence CDATA #IMPLIED>
 <!ELEMENT Sentence (Word*, Concept*, Chunk*, Tag*)>
 <!ATTLIST Sentence
           sid ID #REQUIRED
