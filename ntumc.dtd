@@ -2,7 +2,7 @@
 <!ATTLIST Corpus
           corpusID ID #REQUIRED
           title CDATA #REQUIRED
-          language (multilingual | monolingual) #REQUIRED>
+          linguality (multilingual | monolingual) #REQUIRED>
 <!ELEMENT Document (Sentence+)>
 <!ATTLIST Document
           docID ID #REQUIRED
