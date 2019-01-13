@@ -68,7 +68,7 @@
           sid_from IDREF #REQUIRED
           sid_to IDREFS #REQUIRED
 	  type (manual|automatic) #REQUIRED>
-<!ELEMENT WordAlignment EMPTY>s
+<!ELEMENT WordAlignment EMPTY>
 <!ATTLIST WordAlignment
           wid_from IDREF #REQUIRED
           wid_to IDREFS #REQUIRED
