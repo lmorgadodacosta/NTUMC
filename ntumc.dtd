@@ -61,8 +61,7 @@
 <!ELEMENT Alignment (DocAlignment*, SentAlignment*, WordAlignment*, ConceptAlignment*)>
 <!ELEMENT DocAlignment EMPTY>
 <!ATTLIST DocAlignment
-          docID IDREFS #REQUIRED
-	  type (manual|automatic) #REQUIRED>
+          docID IDREFS #REQUIRED>
 <!ELEMENT SentAlignment EMPTY>
 <!ATTLIST SentAlignment
           sid_from IDREF #REQUIRED
