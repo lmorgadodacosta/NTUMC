@@ -2,7 +2,7 @@
 <!ATTLIST Corpus
           corpusID ID #REQUIRED
           title CDATA #REQUIRED
-          language (multilingual | monolingual) #REQUIRED>
+          linguality (multilingual | monolingual) #REQUIRED>
 <!ELEMENT Document (Sentence+)>
 <!ATTLIST Document
           docID ID #REQUIRED
@@ -18,7 +18,8 @@
 	  value CDATA #REQUIRED
 	  comment CDATA #IMPLIED
 	  last_changed_by CDATA #IMPLIED
-          last_changed CDATA #IMPLIED>
+          last_changed CDATA #IMPLIED
+          confidence CDATA #IMPLIED>
 <!ELEMENT Sentence (Word*, Concept*, Chunk*, Tag*)>
 <!ATTLIST Sentence
           sid ID #REQUIRED
@@ -64,12 +65,15 @@
 <!ELEMENT SentAlignment EMPTY>
 <!ATTLIST SentAlignment
           sid_from IDREF #REQUIRED
-          sid_to IDREFS #REQUIRED>
+          sid_to IDREFS #REQUIRED
+	  type (manual|automatic) #REQUIRED>
 <!ELEMENT WordAlignment EMPTY>
 <!ATTLIST WordAlignment
           wid_from IDREF #REQUIRED
-          wid_to IDREFS #REQUIRED>
+          wid_to IDREFS #REQUIRED
+	  type (manual|automatic) #REQUIRED>
 <!ELEMENT ConceptAlignment EMPTY>
 <!ATTLIST ConceptAlignment
           cid_from IDREF #REQUIRED
-          cid_to IDREFS #REQUIRED>
+          cid_to IDREFS #REQUIRED
+	  type (manual|automatic) #REQUIRED>
