@@ -6,7 +6,7 @@ import argparse
 ################################################################################
 # TO DO
 ################################################################################
-# - get sentiment on concepts
+# - warn if requested docs do not exist, only get data for them
 # - get chunks
 # - get sentiment chunks
 # - rename DTD to user_stamp time_stamp
@@ -24,7 +24,7 @@ def dump_tree_to_file(output, filename='dump.xml'):
     with open(filename, 'w') as so:
         so.write(output)
 
-    print(f'{filename} successfully created')
+    print('{} successfully created'.format(filename))
 
 def inf_dd():
     return dd(inf_dd)
@@ -39,7 +39,7 @@ def valid_xml(c):
         0x10000 <= codepoint <= 0x10FFFF
         )
 
-def main(db_path):
+def main(db_path,docs):
     cwd = os.path.dirname(os.path.abspath(__file__))
     db_path = os.path.join(cwd, db_path)
 
@@ -88,6 +88,14 @@ def main(db_path):
             sid, wid, cid, usrname = cwl
             cwl_by_sent_dd[sid][cid].append(wid)
 
+        c.execute("""SELECT sid, cid, score, username
+                     FROM sentiment
+                  """)
+        sql_senti = c.fetchall()
+        senti_by_sent_dd = dd(lambda: dd(tuple))
+        for (sid, cid, score, username) in sql_senti:
+            senti_by_sent_dd[sid][cid] = (score, username)
+
         ################################################################################
         # BUILD THE XML
         ################################################################################
@@ -96,10 +104,10 @@ def main(db_path):
         corpus.set("corpusID", "ntumc")
         corpus.set("title", "NTU Multilingual Corpus")
         corpus.set("language", "multilingual")
-
         for d in sql_docs:
-
             docid, docname, doctitle, docurl, docsub, doccoll = d
+            if docname not in docs:
+                continue
             doclang = "eng"
 
             document = etree.SubElement(corpus, "Document")
@@ -178,10 +186,17 @@ def main(db_path):
                     if user:
                         concept.set("last_changed_by", user)
 
-                        # concept_tag = etree.SubElement(concept, "Tag")
-                # concept_tag.set("category","sentiment")
-                # concept_tag.set("value","0.8")
-
+                    if senti_by_sent_dd[sid][cid]:
+                        score, username = senti_by_sent_dd[sid][cid]
+                        if abs(score) > 100:
+                            print("score too high!", sid, cid, score)
+                        else:
+                            score = round(score/100.0,2)
+                        concept_tag = etree.SubElement(concept, "Tag")
+                        concept_tag.set("category","sentiment")
+                        concept_tag.set("value", str(score))
+                        if username:
+                            concept_tag.set("last_changed_by", username)
                 # chunk = etree.SubElement(sentence, "Chunk")
                 # chunk.set("chid","ch1")
                 # chunk.set("wid","w2 w3")
@@ -196,13 +211,14 @@ def main(db_path):
 if __name__ == '__main__':
     usage = "Correct usage: python dump_sqlite.py.py -d <path_to_db_file>"
     parser = argparse.ArgumentParser(description="Dumps given sqlite file to xml validated against ntumc.dtd")
-    parser.add_argument("-d", "--database", help="path to database file")
+    parser.add_argument("-d", "--database", help="database file")
     parser.add_argument("-o", "--output", help="output to file in current folder", action="store_true", default=False)
+    parser.add_argument("--docs", help="list of docs to output", nargs="*", default=[])
     options = parser.parse_args()
 
     if options.database:
         db_path = options.database
-        corpus = main(db_path)
+        corpus = main(db_path,options.docs)
         output = create_output(corpus)
 
         if options.output:
